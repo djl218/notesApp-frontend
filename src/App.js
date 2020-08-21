@@ -17,7 +17,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   const noteFormRef = React.createRef()
-  
+
   useEffect(() => {
     noteService
       .getAll()
@@ -54,14 +54,14 @@ const App = () => {
       .then(returnedNote => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
-      .catch(error => {
+      .catch(() => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         )
         setTimeout(() => {
           setErrorMessage(null)
-      }, 5000)
-      })  
+        }, 5000)
+      })
   }
 
   const handleLogin = async (event) => {
@@ -108,37 +108,37 @@ const App = () => {
     ? notes
     : notes.filter(note => note.important)
 
-    return (
-      <div>
-        <h1>Notes</h1>
-        <Notification message={errorMessage} />
+  return (
+    <div>
+      <h1>Notes</h1>
+      <Notification message={errorMessage} />
 
-        {user === null ?
-          loginForm() :
-          <div>
-            <p>{user.name} logged in</p>
-            {noteForm()}
-          </div>
-        }
-
+      {user === null ?
+        loginForm() :
         <div>
-          <button onClick={() => setShowAll(!showAll)}>
-            show {showAll ? 'important' : 'all' }
-          </button>
+          <p>{user.name} logged in</p>
+          {noteForm()}
         </div>
-        <ul>
-          {notesToShow.map((note, i) =>
-            <Note 
-              key={i} 
-              note={note}
-              toggleImportance={() => toggleImportanceOf(note.id)}
-            />
-          )}
-        </ul>
+      }
 
-        <Footer />
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+            show {showAll ? 'important' : 'all' }
+        </button>
       </div>
-    )
+      <ul>
+        {notesToShow.map((note, i) =>
+          <Note
+            key={i}
+            note={note}
+            toggleImportance={() => toggleImportanceOf(note.id)}
+          />
+        )}
+      </ul>
+
+      <Footer />
+    </div>
+  )
 }
 
 export default App
