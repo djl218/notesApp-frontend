@@ -1,11 +1,8 @@
 # notesApp-frontend
-Frontend for the notes app for the FullStack Open from the University of Helsinki.
+Frontend for the notes app.
 
-The backend can be found here:
-https://github.com/djl218/notesApp-backend
-
-Link to the notes app:
+Link to the notes app:<br>
 https://gorgeous-lassen-volcanic-17734.herokuapp.com/
 
-Link to FullStack Open:
-https://fullstackopen.com/en/
+The backend can be found here:<br>
+https://github.com/djl218/notesApp-backend
